@@ -1,4 +1,3 @@
-
 pipeline {
     agent any
 
@@ -47,14 +46,14 @@ pipeline {
                 always {
                     echo 'Checking Allure results...'
 
-                    bat '''
+                    bat 
                         if exist target\\allure-results (
                             echo Allure results found:
                             dir /s /b target\\allure-results
                         ) else (
                             echo ERROR: target\\allure-results was not created
                         )
-                    '''
+                    
                 }
             }
         }
