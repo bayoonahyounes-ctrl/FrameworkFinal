@@ -43,17 +43,9 @@ pipeline {
             }
 
             post {
-                always {
-                    echo 'Checking Allure results...'
-
-                    bat 
-                        if exist target\\allure-results (
-                            echo Allure results found:
-                            dir /s /b target\\allure-results
-                        ) else (
-                            echo ERROR: target\\allure-results was not created
-                        )
-                    
+                always { 
+                    echo 'Checking Allure results...' 
+                    bat 'if exist target\\allure-results dir /s /b target\\allure-results'                    
                 }
             }
         }
