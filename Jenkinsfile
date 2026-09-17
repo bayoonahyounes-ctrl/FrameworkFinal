@@ -35,11 +35,13 @@ pipeline {
             steps {
                 bat "mvn -B test -DsuiteXmlFile=${params.SUITE} -Dheadless=${params.HEADLESS}"
             }
+            post { always { echo 'Checking Allure results...' bat 'if exist target\\allure-results (dir /s /b target\\allure-results) else (echo ERROR: target\\allure-results was not created)' } }
         }
     }
 
     post {
         always {
+
             junit testResults: 'target/surefire-reports/*.xml', allowEmptyResults: true
 
             allure includeProperties: false,
